@@ -26,7 +26,7 @@ const ListExpenses = () => {
   };
   const TableHeaders = ["No", "Amount", "Category", "Date"];
   return (
-    <>
+    <div style={{position:'absolute',top:'100px',left:'300px',width:'82%'}}>
       <table className="table table-sm table-dark">
         <thead>
           <tr>
@@ -52,7 +52,7 @@ const ListExpenses = () => {
           </tr>
         </tbody>
       </table>
-    </>
+    </div>
   );
 };
 export default ListExpenses;

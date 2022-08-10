@@ -5,6 +5,7 @@ const AddExpenses = () => {
   const [state, setState] = useState({
     amount: 0,
     category: "",
+    paymentmethod:'Cash',
     date: new Date(),
   });
   console.log(state);
@@ -20,7 +21,7 @@ const AddExpenses = () => {
     setState({
       ...state,
       [e.target.name]: e.target.value,
-      [e.target.name]: e.target.type === "number" ? parseInt(e.target.value) : e.target.value
+      // [e.target.name]: e.target.type === "number" ? parseInt(e.target.value) : e.target.value
     });
   };
   const handleSubmit = (e) => {
@@ -44,16 +45,9 @@ const AddExpenses = () => {
   console.log(state);
 
   return (
-    <>
+    <div style={{position:'absolute',top:'100px',left:'300px',width:'82%'}}>
       <div
         className="card"
-        style={{
-          width: "500px",
-          position: "absolute",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-        }}
       >
         <div className="card-body">
           <form onSubmit={handleSubmit}>
@@ -85,6 +79,20 @@ const AddExpenses = () => {
               </select>
             </div>
             <div className="mb-3">
+              <label className="form-label">Payment Method</label>
+              <select
+                className="form-select"
+                aria-label="Default select example"
+                name="paymentmethod"
+                value={state.paymentmethod}
+                onChange={handleOnchange}
+              >
+                
+                <option value="Cash">Cash</option>
+                <option value="Account">Account</option>
+              </select>
+            </div>
+            <div className="mb-3">
               <label className="form-label">Date</label>
               <input
                 type="date"
@@ -99,7 +107,7 @@ const AddExpenses = () => {
           </form>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 export default AddExpenses;

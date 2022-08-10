@@ -25,10 +25,10 @@ connection.connect((err)=>{
 
 app.post('/addmyexpenses',(req,res)=>{
     console.log(req.body);
-    const {amount,category,date} = req.body
-    connection.query('INSERT INTO myexpenses (amount,category,date) VALUES (?, ?,?)',[amount,category,date],(err,results)=>{
+    const {amount,category,paymentmethod,date} = req.body
+    connection.query('INSERT INTO myexpenses (amount,category,paymentmethod,date) VALUES (?, ?,?,?)',[amount,category,paymentmethod,date],(err,results)=>{
         if(err) throw err
-        if(!amount || !category){
+        if(!amount || !category || !date || !paymentmethod){
             res.status(400).send({
                 message:'enter Amount and Category'
             })
