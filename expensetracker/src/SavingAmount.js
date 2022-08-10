@@ -1,7 +1,9 @@
-import React, { useState } from "react";
-
+import React, { useState,useContext  } from "react";
+import AmountContext from './Context/AmountContext'
 const SavingAmount = () => {
-    const [amount,setAmount] = useState(100)
+    const sumofamount = useContext(AmountContext);
+    console.log("some of ",sumofamount);
+    const [amount,setAmount] = useState(10000)
   return (
     <div
       style={{
@@ -19,11 +21,11 @@ const SavingAmount = () => {
             </div>
             <div className="mb-3">
               <label className="form-label">Debited Amount :</label>
-              <label className="form-label">{amount}</label>
+              <label className="form-label">{sumofamount.totalSum}</label>
             </div>
             <div className="mb-3">
               <label className="form-label">Remaining Amount :</label>
-              <label className="form-label">{amount-10}</label>
+              <label className="form-label">{amount-sumofamount.totalSum}</label>
             </div>
         </div>
       </div>

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import moment from "moment";
+import AmountContext from "./Context/AmountContext";
+import SavingAmount from "./SavingAmount";
 
 const ListExpenses = () => {
   const [expensesList, setExpensesList] = useState([]);
@@ -8,7 +10,10 @@ const ListExpenses = () => {
 
   useEffect(() => {
     getExpenses();
-    const total = expensesList.reduce((acc, row) => acc + parseInt(row.amount), 0);
+    const total = expensesList.reduce(
+      (acc, row) => acc + parseInt(row.amount),
+      0
+    );
     setTotalSum(total);
   }, [expensesList]);
   const getExpenses = () => {
@@ -26,7 +31,14 @@ const ListExpenses = () => {
   };
   const TableHeaders = ["No", "Amount", "Category", "Date"];
   return (
-    <div style={{position:'absolute',top:'100px',left:'300px',width:'82%'}}>
+    <div
+      style={{
+        position: "absolute",
+        top: "100px",
+        left: "300px",
+        width: "82%",
+      }}
+    >
       <table className="table table-sm table-dark">
         <thead>
           <tr>
@@ -52,7 +64,11 @@ const ListExpenses = () => {
           </tr>
         </tbody>
       </table>
+      <AmountContext.Provider value={{totalSum}}>
+    <SavingAmount/>
+  </AmountContext.Provider>
     </div>
   );
+  
 };
 export default ListExpenses;
